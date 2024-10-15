@@ -12,17 +12,17 @@ Basically, create a library which exposes the following functions:
 
 ```cpp
 // Initial setup (does not get called again on reload)
-__declspec(dllexport) extern "C" void plug_init(void);
+extern "C" __declspec(dllexport) void plug_init(void);
 // Called before reloading the library
 // used to return a state object that will be passed to plug_post_reload
 // and to clean up any additional resources you might have created
-__declspec(dllexport) extern "C" void* plug_pre_reload(void);
+extern "C" __declspec(dllexport) void* plug_pre_reload(void);
 // gets called after reloading the library with the state object returned by plug_pre_reload
-__declspec(dllexport) extern "C" void plug_post_reload(void* state);
+extern "C" __declspec(dllexport) void plug_post_reload(void* state);
 // Called every frame
-__declspec(dllexport) extern "C" void plug_update(Env env);
+extern "C" __declspec(dllexport) void plug_update(Env env);
 // unused, but might be used to reset your state
-__declspec(dllexport) extern "C" void plug_reset(void);
+extern "C" __declspec(dllexport) void plug_reset(void);
 ```
 
 Call `imgui_exploration.exe` with the path to the library as the first argument.  
